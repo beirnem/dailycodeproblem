@@ -56,16 +56,17 @@ function knownColours(sockAr) {
 function unknownColours(sockAr) {
     console.log("--- Known colours, solution 2 ---");
     var pairs = 0;
-    var hashSet = [];
-    sockAr.forEach(sock => {
-        if(!hashSet.includes(sock)) {
-            var matchedItems = sockAr.filter(match => match === sock);
-            var occurences = matchedItems.length;
-            if(occurences > 1) {
-                pairs += ((occurences - (occurences % 2)) / 2);
+    var hashSet = {};
+    for (let i = 0; i < sockAr.length; i++) {
+        var sock = sockAr[i];
+        if(hashSet.hasOwnProperty(sock)){
+            hashSet[sock]++;
+            if (hashSet[sock] % 2 === 0) {
+                pairs++;
             }
-            hashSet.push(sock);
-        }        
-    });
+        } else {
+            hashSet[sock] = 1;
+        }
+    }
     console.log("Number of pairs: " + pairs);
 }
