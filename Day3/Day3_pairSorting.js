@@ -48,4 +48,22 @@ for(var i=x.length-1; i >= 0; i--)
 var pairs = Math.floor(array1.length/2) + Math.floor(array2.length/2) + Math.floor(array3.length/2);
 console.log("Number of pairs: " + pairs);
 
+// Lets assume though that we don't know how many different styles of socks we have.
+// We can no longer just create arrays and fill those arrays as we don't know how many arrays to create.
+// 
+// Unknown colours.
+var y = [1, 2, 3, 1, 2];// [1, 2, 4, 3, 1, 2, 5, 3];
+var temp;
+var countPairs = 0;
+for (let j = 0; j < y.length; j++) {
+    temp = y.shift();
+    var temp2 = y.shift();
+    if(temp == temp2) countPairs++;
+    else {
+        y.unshift(temp);
+        y.push(temp2);
+    }
+}
 
+console.log("2: Number of pairs: " + countPairs);
+// possible soln: https://www.codementor.io/@rezehnde/sock-merchant-challenge-solved-in-c-10iz1059au
